@@ -1,0 +1,51 @@
+Lab_Notebook_Bi622
+------------------
+Wed, July 26, 2023
+------------------
+1.5 billion lines in R1, 363 million records 
+DONT UNZIP;DONT COPY 
+throw N reads into unknown pile (can try and error correct but not necessary)
+I'm scared for this assignment LOL
+Same index on both sides
+Files can be found on talapas
+/projects/bgmp/shared/2017_sequencing
+    1294_S1_L008_R1_001.fastq.gz (Biological Read)
+    1294_S1_L008_R2_001.fastq.gz (Barcodes)
+    1294_S1_L008_R3_001.fastq.gz  (Biological Read)
+    1294_S1_L008_R4_001.fastq.gz (Barcodes)
+Inital data exploration
+    zcat 1294_S1_L008_R1_001.fastq.gz | head
+    zcat 1294_S1_L008_R1_001.fastq.gz | wc - l (got 1.5 billion)
+    zcat 1294_S1_L008_R1_001.fastq.gz | grep "^@" | head
+*must reverse compliment the barcodes to see that theyre the same
+    NCTTCGAC
+    TCTTCGAN
+USE rv compliment for naming on read 3 file[(so its 5'barcode3')-(5'_rv_compliment_barcode3')]
+    Will have to write code to reverse compliment??
+Cycles = length of read, find out! 
+    zcat 1294_S1_L008_R1_001.fastq.gz | grep -v "^@" | head -1 | wc
+        output: 1   1  102 
+        Length of read = 102 CYCLES 
+        But when i go and copy&paste into word its sayinf 101 wc .... 
+    zcat 1294_S1_L008_R1_001.fastq.gz | grep -v "^@" | head -1 | wc -L
+        Output: 101 
+        -L is for max line length
+
+Test files need to make (Min 2 file each)
+    *Dual Matched (index1_R1.fq, index1_R2.fq) 
+    *Index hoped (hoped_R1, hoped_R2)
+    *Unknown (R1, R1)
+Here are the barcodes 
+    B1	GTAGCGTA    A5	CGATCGAT    C1	GATCAAGG
+    B9	AACAGCGA    C9	TAGCCATG    C3	CGGTAATC
+    B3	CTCTGGAT    C4	TACCGGAT    A11	CTAGCTCA
+    C7	CACTTCAC    B2	GCTACTCT    A1	ACGATCAG
+    B7	TATGGCAC    A3	TGTTCCGT    B4	GTCCTAAG
+    A12	TCGACAAG    C10	TCTTCGAC    A2	ATCATGCG
+    C2	ATCGTGGT    A10	TCGAGAGT    B8	TCGGATTC
+    A7	GATCTTGC    B10	AGAGTCCA    A8	AGGATAGC
+-------------------
+Thur, July 27, 2023
+-------------------
+I am going to write out my plan for part two in a txt document called pseudo_code.txt
+Also will make the 6 test files today
