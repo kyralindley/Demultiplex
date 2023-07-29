@@ -29,8 +29,31 @@
 
 
 
-4. Pseudocode [pseudo_code.txt](./pseudo_code.txt)
-5. High level functions. For each function, be sure to include:
+4. Pseudocode [pseudo_code.txt](../pseudo_code.txt)
+   Pseudo code for demultiplexing
+
+Define a function that reverse compliments barcdodes
+    Make it into a dictionary,I will call it compliment_dictionary 
+        The key is one letter of genetic code
+        The value is its corresponding base pair 
+        Ex.... {A:T,T:A, G:C, C:G} 
+    Then i will reverse the order of the sequence, then make the changes to the code 
+
+
+I will the open all four files and read them, in a while true loop i will do these four things, ordering from least computationally intesnse to most computationally
+    with open (all 4 files, "r") as f1,f2,f3,f4:
+        while true
+            *extract sequence line & header (f1,f4)
+            header=line
+            sequence=line
+            *do same on file 3, but call our reverse compliment function on the sequence line of these 
+                *if N is present in sequence line or not in list of index: send to unknown
+                *elif:
+                    add the index-index to both fw and rv if fw_barcode=rv_barcode: send to dual matched 
+
+                *elif: 
+                    fw!=rv AND index in list: send to index hopped 
+6. High level functions. For each function, be sure to include:
     1. Description/doc string
     2. Function headers (name and parameters)
     3. Test examples for individual functions
