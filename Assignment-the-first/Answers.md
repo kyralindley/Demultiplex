@@ -16,7 +16,8 @@
 R2_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/11d915b8-ad88-4e1c-bdd2-15ef91ddac15)
 R3_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/4fc3c51f-0a67-4b1b-a88c-299f8482c99d)
 R4_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/4ceec194-f712-495c-b07c-6fe586ec8d6d)
- 
+
+
     
 ## Part 2
 1. Define the problem: Having four files from a sequencer that we have to demultiplex. Once demultiplex, we need to categorize into the following categories: dual matched, unknown, index hopped.
