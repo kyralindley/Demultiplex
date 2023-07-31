@@ -12,8 +12,11 @@
 
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
-    2. **YOUR ANSWER HERE**
-    3. **YOUR ANSWER HERE**
+    2.R1_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/05fc5e5d-d4fe-407a-9033-024a1a174f1e)
+R2_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/11d915b8-ad88-4e1c-bdd2-15ef91ddac15)
+R3_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/4fc3c51f-0a67-4b1b-a88c-299f8482c99d)
+R4_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/4ceec194-f712-495c-b07c-6fe586ec8d6d)
+ 
     
 ## Part 2
 1. Define the problem: Having four files from a sequencer that we have to demultiplex. Once demultiplex, we need to categorize into the following categories: dual matched, unknown, index hopped.
