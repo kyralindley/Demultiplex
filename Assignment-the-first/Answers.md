@@ -10,6 +10,12 @@
 | 1294_S1_L008_R3_001.fastq.gz | Index | 8 | Phred+33 |
 | 1294_S1_L008_R4_001.fastq.gz | Biological Read | 101 | Phred+33 |
 
+What is a good quality score cutoff for index reads and biological read pairs to utilize for sample identification and downstream analysis, respectively? Justify your answer.
+
+A good cutoff for illumina quality scores is a Q30. At this threshold all reads have no errors or ambiguities. A quality score of 20 would mean that every 100bp in a sequence could have a error. 
+
+How many indexes have undetermined (N) base calls? (Utilize your command line tool knowledge. Submit the command(s) you used. CHALLENGE: use a one-line command)
+
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
     2.R1_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/05fc5e5d-d4fe-407a-9033-024a1a174f1e)
