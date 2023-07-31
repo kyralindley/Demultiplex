@@ -17,8 +17,9 @@ A good cutoff for illumina quality scores is a Q30. At this threshold all reads 
 How many indexes have undetermined (N) base calls? (Utilize your command line tool knowledge. Submit the command(s) you used. CHALLENGE: use a one-line command)
 
 zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | sed -n '2~4p' | grep "N" | wc -l 
-3976613
-
+The R2 file has 3976613 indexes with base calls.
+zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz | sed -n '2~4p' | grep "N" | wc -l 
+The R3 file has indexes with base calls. 
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
     2.R1_Hist.png ![image](https://github.com/kyralindley/Demultiplexing/assets/109238262/05fc5e5d-d4fe-407a-9033-024a1a174f1e)
