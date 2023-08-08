@@ -104,3 +104,40 @@ Stilllll getting errors, so I will comment out argparse for now and just enter 8
     R3 - slurm 23714
     R2 - slurm 23715
 *Come back and fix argparse!
+-------------------
+Mon, July 31, 2023
+-------------------
+zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | sed -n '2~4p' | grep "N" | wc -l 
+The R2 file has 3976613 indexes with base calls.
+zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz | sed -n '2~4p' | grep "N" | wc -l 
+The R3 file has 3328051 indexes with base calls. 
+Total read number: 363246735
+R2 = (3976613/363246735)*100%= 0.01%
+R3 = (3328051/363246735)*100%= 0.009%
+-------------------
+Mon, Aug 7th, 2023
+-------------------
+Today, I made rvcomp.py to make my function reverse_complement
+    I tested it on a test string "ACTG"
+        It reversed my string = "GTCA"
+            then matched the reverse compliment of the reverse string = "CAGT" 
+Path to desired files
+    /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R1_001.fastq.gz 
+    /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz 
+    /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz  
+    /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R4_001.fastq.gz   
+Here are my goals for the next part of my code:
+#Create a dictionary of {index sequence:index code} for our known indices.
+#Create a dictionary of {index code: occurrence count} for our known indices, with all values initially 0.
+#Create an empty dictionary to add mismatched pairs to.
+#Initialize a counter for unknown index pairs.
+#Create 4 empty lists of 4 elements to store our records.
+    
+    Open the 4 input files to read from.
+    Open each of the 52 output files to write to.
+    Read one record at a time from each input file (consume 4 lines from each file), storing in the lists.
+    Replace the sequence of the second index with its reverse complement, in place.         
+
+-------------------
+Tues, Aug 8, 2023
+-------------------
