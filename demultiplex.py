@@ -128,10 +128,11 @@ hopped_file4.close()
 
 #print("the possible index pairs",possibleindexpairs_dict)
 #print("Instances_dict:",instances_dict)
+print("matched dictionary")
 print(f'index\tvalue\tpercentage of matched')
 for index in matched_dict_count:
     print(f'{index}\t{matched_dict_count[index]}\t{(matched_dict_count[index]/total)*100}%')
-print("the matched dictionary count is", matched_dict_count)
+print("hopped dictionary")
 print(f'index\tvalue\tpercentage of hopped')
 for index in hopped_dict_count:
     print(f'{index}\t{hopped_dict_count[index]}\t{(hopped_dict_count[index]/total)*100}%')
