@@ -6,17 +6,19 @@ def get_args():
     parser= argparse.ArgumentParser()
     parser.add_argument("-f", "--filename", help="Input filename", required=True)
     parser.add_argument("-o", "--output", help="Output filename", required=False)
+#    parser.add_argument("-r", "--readlength", help="Read Length ", required=True)
     return parser.parse_args()
  
 args = get_args()
 f=args.filename
 o=args.output
+#r=args.readlength
 
 def init_list(lst: list, value: float=0.0) -> list:
     '''This function takes an empty list and will populate it with
     the value passed in "value". If no value is passed, initializes list
-    with 101 values of 0.0.'''
-    for zeros in range(101):
+    with r values of 0.0.'''
+    for zeros in range(8):
         lst.append(value)
     return lst
 
@@ -51,7 +53,7 @@ for i,sumoflist in enumerate(my_list):
     my_list[i]=mean
   #  print(f'{i}\t{mean}')
 
-plt.plot(range(101),my_list) #x axis, y axis
+plt.plot(range(8),my_list) #x axis, y axis
 plt.xlabel('Number of Base Pairs')
 plt.ylabel('Mean Quality Score')
 plt.title('Mean Quality Score of the Base Pairs')

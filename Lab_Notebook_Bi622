@@ -141,3 +141,9 @@ Here are my goals for the next part of my code:
 -------------------
 Tues, Aug 8, 2023
 -------------------
+I am going to work on making my while true loop .... comparing to fastaparse.py from PS7
+
+In N.py, I am trying to make it iterate through the file R1_Test.fq 
+    FIXED IT! My issue was b/c I was stuck in a loop :) 
+
+Gotten through all the if N in code step... Now trying to check dictionary to see if the index is present 
