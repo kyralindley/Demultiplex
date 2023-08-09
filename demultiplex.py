@@ -23,7 +23,7 @@ known_dict={"GTAGCGTA":0,"AACAGCGA":0,"CTCTGGAT":0,"CACTTCAC":0,"CGATCGAT":0,"GA
 # known_count_dict={}
 # for key in known_dict.keys():
 #     known_count_dict[key]=0
-#created a dictionary with {indexes:[R1_M,R2_M]}
+#created a dictionary with {indexes:[R1_M,R2_M]} for naming matched files
 file_naming_dict={}
 file="/projects/bgmp/shared/2017_sequencing/indexes.txt"
 with open(file, "r") as fh:
@@ -37,9 +37,12 @@ with open(file, "r") as fh:
 
 #create an empty dictionary to add mismatch pairs 
 possibleindexpairs_dict={}
-
+#matcheddictionary with counts 
+matched_dict_count={}
+hopped_dict_count={}
 #instances to show how many each condition occured
 instances_dict={"matched":0,"hopped":0,"unknown":0}
+#naming
 unknown_file1=open("output/"+"unknown_R1.fq","w")
 unknown_file4=open("output/"+"unknown_R2.fq","w")
 
@@ -58,8 +61,10 @@ def append_header(index1,index2,header):
     and returns an appeneded header with the indexes, index1-index2'''
     new_header=header +" "+ index1 + "-" + index2
     return new_header
-
+#total for calculating percentages later
+total=0
 with gzip.open(f1,"rt") as fh1, gzip.open(f2,"rt") as fh2, gzip.open(f3,"rt") as fh3, gzip.open(f4,"rt") as fh4:
+#with open(f1,"r") as fh1, open(f2,"r") as fh2, open(f3,"r") as fh3, open(f4,"r") as fh4:
     while True:
         record_r1 = readfour(fh1)
         #breaking when four empty strings 
@@ -68,6 +73,7 @@ with gzip.open(f1,"rt") as fh1, gzip.open(f2,"rt") as fh2, gzip.open(f3,"rt") as
         record_r2 = readfour(fh2)
         record_r3 = readfour(fh3)
         record_r4 = readfour(fh4)
+        total+=1
         #create rv comp of r3
         reverse_index_comp=bioinfo.rev_comp(record_r3[1])
         #appending headers
@@ -95,6 +101,10 @@ with gzip.open(f1,"rt") as fh1, gzip.open(f2,"rt") as fh2, gzip.open(f3,"rt") as
             file_naming_dict[index2][0].write(record_r1[0]+'\n'+record_r1[1]+'\n'+record_r1[2]+'\n'+record_r1[3]+'\n')
             #dictionary has vale of a list have to grab the second item for _R2.fq
             file_naming_dict[index2][1].write(record_r4[0]+'\n'+record_r4[1]+'\n'+record_r4[2]+'\n'+record_r4[3]+'\n')
+            if new_key in matched_dict_count:
+                matched_dict_count[new_key]+=1
+            else:
+                matched_dict_count[new_key]=1
             if new_key in possibleindexpairs_dict:
                 possibleindexpairs_dict[new_key]+=1
             else:
@@ -103,14 +113,25 @@ with gzip.open(f1,"rt") as fh1, gzip.open(f2,"rt") as fh2, gzip.open(f3,"rt") as
             instances_dict["hopped"]+=1
             hopped_file1.write(record_r1[0]+'\n'+record_r1[1]+'\n'+record_r1[2]+'\n'+record_r1[3]+'\n')
             hopped_file4.write(record_r4[0]+'\n'+record_r4[1]+'\n'+record_r4[2]+'\n'+record_r4[3]+'\n')
+            if new_key in hopped_dict_count:
+                hopped_dict_count[new_key]+=1
+            else:
+                hopped_dict_count[new_key]=1
             if new_key in possibleindexpairs_dict:
                 possibleindexpairs_dict[new_key]+=1
             else:
                 possibleindexpairs_dict[new_key]=1
 unknown_file1.close()
 unknown_file4.close()
-
 hopped_file1.close()
 hopped_file4.close()
-print(possibleindexpairs_dict)
+
+#print("the possible index pairs",possibleindexpairs_dict)
 #print("Instances_dict:",instances_dict)
+print(f'index\tvalue\tpercentage of matched')
+for index in matched_dict_count:
+    print(f'{index}\t{matched_dict_count[index]}\t{(matched_dict_count[index]/total)*100}%')
+print("the matched dictionary count is", matched_dict_count)
+print(f'index\tvalue\tpercentage of hopped')
+for index in hopped_dict_count:
+    print(f'{index}\t{hopped_dict_count[index]}\t{(hopped_dict_count[index]/total)*100}%')
