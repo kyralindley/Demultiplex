@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse 
 import bioinfo
+import gzip 
 def get_args():
     parser= argparse.ArgumentParser()
     parser.add_argument("-f1", "--filename1", help="Input filename1", required=True)
@@ -22,18 +23,28 @@ known_dict={"GTAGCGTA":0,"AACAGCGA":0,"CTCTGGAT":0,"CACTTCAC":0,"CGATCGAT":0,"GA
 # known_count_dict={}
 # for key in known_dict.keys():
 #     known_count_dict[key]=0
+#created a dictionary with {indexes:[R1_M,R2_M]}
+file_naming_dict={}
+file="/projects/bgmp/shared/2017_sequencing/indexes.txt"
+with open(file, "r") as fh:
+    fh.readline()
+    for line in fh:
+        index=line.strip().split("\t")[4]
+        for item in index:
+            R1_M=open("output/"+index+"_R1.fq","w")
+            R2_M=open("output/"+index+"_R2.fq","w")
+            file_naming_dict[index]=(R1_M,R2_M)
 
 #create an empty dictionary to add mismatch pairs 
 possibleindexpairs_dict={}
 
 #instances to show how many each condition occured
 instances_dict={"matched":0,"hopped":0,"unknown":0}
-unknown_file1=open("unknown_R1.fq","w")
-unknown_file4=open("unknown_R2.fq","w")
-matched_file1=open("matched_R1.fq","w")
-matched_file4=open("matched_R2.fq","w")
-hopped_file1=open("hopped_R1.fq","w")
-hopped_file4=open("hopped_R2.fq","w")
+unknown_file1=open("output/"+"unknown_R1.fq","w")
+unknown_file4=open("output/"+"unknown_R2.fq","w")
+
+hopped_file1=open("output/"+"hopped_R1.fq","w")
+hopped_file4=open("output/"+"hopped_R2.fq","w")
 def readfour(fh):
     '''make function to read four lines in a file and returns lines as a tuple'''
     header=fh.readline().strip()     
@@ -48,7 +59,7 @@ def append_header(index1,index2,header):
     new_header=header +" "+ index1 + "-" + index2
     return new_header
 
-with open(f1,"r") as fh1, open(f2,"r") as fh2, open(f3,"r") as fh3, open(f4,"r") as fh4:
+with gzip.open(f1,"rt") as fh1, gzip.open(f2,"rt") as fh2, gzip.open(f3,"rt") as fh3, gzip.open(f4,"rt") as fh4:
     while True:
         record_r1 = readfour(fh1)
         #breaking when four empty strings 
@@ -81,8 +92,9 @@ with open(f1,"r") as fh1, open(f2,"r") as fh2, open(f3,"r") as fh3, open(f4,"r")
         elif index2 in known_dict and index2==reverse_index_comp:
             known_dict[index2]+=1
             instances_dict["matched"]+=1
-            matched_file1.write(record_r1[0]+'\n'+record_r1[1]+'\n'+record_r1[2]+'\n'+record_r1[3]+'\n')
-            matched_file4.write(record_r4[0]+'\n'+record_r4[1]+'\n'+record_r4[2]+'\n'+record_r4[3]+'\n')
+            file_naming_dict[index2][0].write(record_r1[0]+'\n'+record_r1[1]+'\n'+record_r1[2]+'\n'+record_r1[3]+'\n')
+            #dictionary has vale of a list have to grab the second item for _R2.fq
+            file_naming_dict[index2][1].write(record_r4[0]+'\n'+record_r4[1]+'\n'+record_r4[2]+'\n'+record_r4[3]+'\n')
             if new_key in possibleindexpairs_dict:
                 possibleindexpairs_dict[new_key]+=1
             else:
@@ -97,8 +109,7 @@ with open(f1,"r") as fh1, open(f2,"r") as fh2, open(f3,"r") as fh3, open(f4,"r")
                 possibleindexpairs_dict[new_key]=1
 unknown_file1.close()
 unknown_file4.close()
-matched_file1.close()
-matched_file4.close()
+
 hopped_file1.close()
 hopped_file4.close()
 print(possibleindexpairs_dict)
