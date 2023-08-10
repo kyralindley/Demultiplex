@@ -147,3 +147,18 @@ In N.py, I am trying to make it iterate through the file R1_Test.fq
     FIXED IT! My issue was b/c I was stuck in a loop :) 
 
 Gotten through all the if N in code step... Now trying to check dictionary to see if the index is present 
+-------------------
+Tues, Aug 8, 2023
+-------------------
+Index stuff:  made test.py to practice the index making dictonary 
+Ran demu.sh 
+    first error: need to add gzip 
+    second try: slurm-26258
+    third try: Submitted batch job 26259
+Had to add in hopped and matched dictionary for calculating
+    fourth try: 26358
+
+-------------------
+Thur, Aug 10, 2023
+-------------------
+I commented through my code to make it pretty, I also cleared out any extra print statments,I will create two files with the hopped dic and matched. I'll make a readable file, push everything up to github. 
