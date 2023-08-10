@@ -2,7 +2,7 @@
 # Author: Kyra Lindley klindley@uoregon.edu
 #This module is a collection of useful bioinformatics functions
 #__version__ = "0.5" 
-
+#this module contains useful bioinformatics tools that I've gained from my time at Knight Campus
 DNAbases = set('ATGCNatcgn')
 RNAbases = set('AUGCNaucgn')
 input_string="ACTG"
