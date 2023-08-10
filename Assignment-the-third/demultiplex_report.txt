@@ -13,4 +13,3 @@ The percentage of reads from each sample can be seen in matched_instances.txt
     Also be seen in the file Matched_graph.png, as a bar graph comparing the index pair with the percentage of reads mapping to an index. 
 
 The percentage of reads with matched indexes can be see in hopped_instances.txt
-
