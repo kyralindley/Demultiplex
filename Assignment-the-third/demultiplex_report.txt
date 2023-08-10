@@ -9,6 +9,6 @@ The percentage of reads that were matched, hopped, and unknown are:
 *unknown:8.5% 30783962.
 The total number of reads was 363246735.
 
-The percentage of reads from each sample can be seen in  (matched_instances.txt)[./matched_instances.txt]
+The percentage of reads from each sample can be seen in matched_instances.txt
 
-The percentage of reads with matched indexes can be see in the (hopped_instances.txt)[./hopped_instances.txt].
+The percentage of reads with matched indexes can be see in hopped_instances.txt
